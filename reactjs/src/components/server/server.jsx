@@ -29,9 +29,11 @@ function Server({server}) {
                 <td>{server.status}</td>
                 <td>{server.isRunSSH}</td>
                 <td>{server.speed}</td>
+                <td>{server.ram}</td>
                 <td>{server.address}</td>
-                <td><Link to={"/update/" + server.id}><button>sửa</button></Link></td>
-                <td><button onClick={handle}>xóa</button></td>
+                <td>{server.admin}</td>
+                <td><Link to={"/update/" + server.id}><button class="btnXoa">sửa</button><button onClick={handle} class="btnSua">xóa</button></Link></td>
+
              </tr>
     );
 }

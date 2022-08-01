@@ -22,11 +22,9 @@ const AuthService = {
         window.location.replace("/login")
     },
     isAuth(){
-        if(localStorage.getItem('username')){
-            return true
+        if(!localStorage.getItem('username')){
+            window.location.replace("/login")
         }
-
-        return false
     }
 }
 

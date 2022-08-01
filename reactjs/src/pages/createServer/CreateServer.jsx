@@ -26,36 +26,43 @@ function CreateServer(props) {
         }
     }
     return (
-        <div className="createServer">
-        <span className="Title">Create server</span>
-        <form className="Form" onSubmit={handleSubmit}>
-          <label>Name</label>
-          <input
+      <div class="login-wrapper">
+<form onSubmit={handleSubmit} class="form">
+      <h2>New server</h2>
+        <div class="input-group">
+
+        <input
             type="text"
             className="Input"
-            placeholder="Enter rname..."
+            placeholder="Enter name..."
             onChange={e => setName(e.target.value)}
           />
-          <label>Password</label>
-          <input
+        </div>
+        <div class="input-group">
+
+        <input
             type="password"
             className="Input"
             placeholder="Enter password..."
             onChange={e => setPassword(e.target.value)}
           />
-          <label>Address</label>
-          <input
-            type="text"
+        </div>
+
+        <div class="input-group">
+
+        <input
+            type="password"
             className="Input"
             placeholder="Enter address..."
-            onChange={e => setAddress(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
-          <button className="Button" type="submit">
-            Create
-          </button>
-        </form>
-      </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Create</button>
+  </form>
+</div>
     );
 }
 
 export default CreateServer;
+

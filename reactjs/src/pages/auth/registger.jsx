@@ -27,34 +27,33 @@ function Registger(props) {
         }
     }
     return (
-        <div className="register">
-        <span className="registerTitle">Register</span>
-        <form className="registerForm" onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            className="registerInput"
-            placeholder="Enter your username..."
-            onChange={e => setUsername(e.target.value)}
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            className="registerInput"
-            placeholder="Enter your password..."
-            onChange={e => setPassword(e.target.value)}
-          />
-          <button className="registerButton" type="submit">
-            Register
-          </button>
+      <div class="login-wrapper">
+      <form onSubmit={handleSubmit} class="form">
+            <h2>Register</h2>
+              <div class="input-group">
+
+                <input
+                      id="loginUser"
+                      type="text"
+                      className="loginrInput"
+                      placeholder="Username"
+                      onChange={e => setUsername(e.target.value)}
+                    />
+              </div>
+              <div class="input-group">
+
+                <input
+                      id="loginPassword"
+                      type="password"
+                      className="loignInput"
+                      placeholder="Password"
+                      onChange={e => setPassword(e.target.value)}
+                    /> 
+              </div>
+
+              <button type="submit" class="submit-btn">Register</button>
         </form>
-        <button className="registerLoginButton">
-          <Link className="link" to="/login">
-            Login
-          </Link>
-        </button>
-        {/* {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>} */}
-      </div>
+    </div>
     );
 }
 

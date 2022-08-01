@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import AuthService from '../../service/AuthService';
-
+import "./login.css"
 Login.propTypes = {
     
 };
@@ -28,35 +28,35 @@ function Login(props) {
       }
   }
   return (
-      <div className="login">
-      <span className="loginTitle">Login</span>
-      <form className="loginForm" onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          className="loginrInput"
-          placeholder="Enter your username..."
-          onChange={e => setUsername(e.target.value)}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          className="loignInput"
-          placeholder="Enter your password..."
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button className="loginButton" type="submit">
-          Login
-        </button>
-      </form>
-      <button className="registerLoginButton">
-        <Link className="link" to="/register">
-          Register
-        </Link>
-      </button>
-      {/* {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>} */}
-    </div>
+      <div class="login-wrapper">
+        <form onSubmit={handleSubmit} class="form">
+              <h2>Login</h2>
+                <div class="input-group">
+
+                  <input
+                        id="loginUser"
+                        type="text"
+                        className="loginrInput"
+                        placeholder="Username"
+                        onChange={e => setUsername(e.target.value)}
+                      />
+                </div>
+                <div class="input-group">
+
+                  <input
+                        id="loginPassword"
+                        type="password"
+                        className="loignInput"
+                        placeholder="Password"
+                        onChange={e => setPassword(e.target.value)}
+                      /> 
+                </div>
+
+                <button type="submit" class="submit-btn">Login</button>
+          </form>
+      </div>
   );
 }
 
 export default Login;
+

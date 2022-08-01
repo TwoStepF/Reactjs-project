@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import "./header.css"
 import AuthService from '../../service/AuthService';
 
@@ -11,10 +11,16 @@ Header.propTypes = {
 const logout = () => {
     AuthService.logout()
 }
+function useQuery() {
+    const { search } = useLocation();
+  
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 function Header(props) {
+    let query = useQuery();
     const [name, setName] = useState('');
     const [bool, setBool] = useState(true);
-    const [key, setKey] = useState('');
+    const [key, setKey] = useState(query.get('key'));
     useEffect(()=>{
         if(localStorage.getItem('username')){
             setName(localStorage.getItem('username'))
@@ -26,44 +32,50 @@ function Header(props) {
         window.location.reload()
     }
     return (
-        <div class="container">
+        <div class="navbar">
+            <div class="icon">
+             <Link to = '/' class="headerItem"><h2 class="logo">Server</h2></Link>
+            </div>
+            <div class="menu">
 
-            { 
-                !bool ? <span class="headerItem" >
-                            <Link to = '/login' class="headerItem">
-                                login
-                            </Link>
-                            <Link to = '/register' class="headerItem">
-                                register
-                            </Link>
-                        </span> :
-                <span class="headerItem">
-                    <Link to = '/' class="headerItem">
-                        home
-                    </Link>
-                    <Link to = '/create' class="headerItem">
-                        New Server
-                    </Link>
-                    <span class="headerItem">
-                        <input
-                            type="text"
-                            className="Input"
-                            placeholder="Enter your key..."
-                            onChange={e => setKey(e.target.value)}
-                        />
-                        <button onClick={reload}>
-                            <Link to={"/search?key=" + key}>
-                                Tìm kiếm
-                            </Link>
-                        </button>
-                    </span>
-                    <button onClick={logout}>
-                        Logout
-                    </button>
-                </span> 
+                    { 
+                        !bool ? 
+                        <ul class="auth">
+                                <li><Link to = '/login' class="headerItem"> LOGIN</Link></li>
+                                <li><Link to = '/register' class="headerItem">REGISTER</Link></li>
+                        </ul> :
+                        <ul>
+                            <div class="search">
+                                    <input
+                                        type="text"
+                                        class="srch" 
+                                        placeholder="Enter your key..."
+                                        defaultValue={key}
+                                        onChange={e => setKey(e.target.value)}
+                                    />
+        
+                            
+                                        <button onClick={reload} class="btnLogout">
+                                            <Link class="headerItem" to={"/search?key=" + key}>
+                                                Tìm kiếm
+                                                </Link>
+                                        </button>
+                            
+                                </div>
+                                <li className="inline"><Link to = '/create' class="headerItem">NEW SERVER</Link></li>
+                            
+                                <button class="btnL" onClick={logout}>
+                                    Logout
+                                </button>
+                        </ul> 
             }
+
+
+            </div>
+            
         </div>
     );
 }
 
 export default Header;
+ 
